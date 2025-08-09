@@ -74,12 +74,13 @@
   }
   .btn:hover{filter:brightness(1.03)} .btn:active{transform:translateY(1px)}
 
-  /* مساحة إعلان أسفل الصفحة */
+  /* إعلان أسفل الصفحة (مُصغّر) */
   .ad-wrap{margin-top:16px;display:grid;place-items:center}
   .ad-box{
-    width:300px;height:250px;background:#ffffffb8;border:1px dashed #a6d9c9;border-radius:14px;
-    display:grid;place-items:center;color:#2b6b59;font-weight:800
+    width:200px;height:100px;background:#ffffffb8;border:1px dashed #a6d9c9;border-radius:14px;
+    display:grid;place-items:center;color:#2b6b59;font-weight:800;font-size:0.95rem
   }
+  .ad-email{font-size:0.9rem;color:#555;margin-top:6px;text-align:center}
 
   .footer{margin-top:10px;color:var(--muted);font-size:.95rem;text-align:center}
 </style>
@@ -108,9 +109,10 @@
         </div>
       </div>
 
-      <!-- إعلان أسفل الصفحة -->
+      <!-- إعلان أسفل الصفحة (مُصغّر) -->
       <div class="ad-wrap">
-        <div class="ad-box" id="ad-space">مساحة إعلانية 300×250</div>
+        <div class="ad-box" id="ad-space">مساحة إعلانية</div>
+        <div class="ad-email">abd30.3000@gmail.com</div>
       </div>
 
       <div class="footer">اكتب الاسم ثم اضغط مشاركة — يمكن أيضًا تمرير الاسم بالرابط (?to=أحمد)</div>
@@ -121,7 +123,7 @@
 (() => {
   "use strict";
 
-  // أدعية صباحية (٧) تتبدّل يوميًا (قصيرة وواضحة)
+  // أدعية صباحية (٧) تتبدّل يوميًا
   const DUAS = [
     "اللهم بك أصبحنا وبك أمسينا وبك نحيا وبك نموت وإليك النشور.",
     "أصبحنا وأصبح الملك لله، والحمد لله، لا إله إلا الله وحده لا شريك له.",
@@ -132,7 +134,8 @@
     "اللهم صلّ وسلم على نبينا محمد، وبارك لنا في صباحنا."
   ];
 
-  const SITE_URL = "https://abdullah3df.github.io/Morgen/"; // رابط موقعك
+  // غيّر هذا للرابط النهائي لصفحتك إذا اختلف لاحقًا
+  const SITE_URL = "https://abdullah3df.github.io/Morgen/";
 
   // عناصر
   const todayEl   = document.getElementById('today');
@@ -147,7 +150,7 @@
   const fullDate = new Intl.DateTimeFormat('ar-EG', { day:'numeric', month:'long', year:'numeric' }).format(now);
   todayEl.textContent = `${weekday} — ${fullDate}`;
 
-  // دعاء اليوم حسب يوم الأسبوع
+  // دعاء اليوم حسب اليوم (0..6)
   const dua = DUAS[now.getDay() % DUAS.length];
   duaEl.textContent = `“${dua}”`;
 
@@ -161,7 +164,7 @@
     bigNameEl.textContent = input.value.trim() || 'صديقي';
   });
 
-  // بناء مشاركة واتساب: اسم + اليوم + التاريخ + دعاء + رابط الصفحة مع الاسم
+  // مشاركة واتساب: اسم + اليوم + التاريخ + دعاء + رابط الصفحة مع الاسم
   function buildShareLink(){
     const name = (input.value.trim() || bigNameEl.textContent || 'صديقي');
     const urlWithName = SITE_URL + "?to=" + encodeURIComponent(name);
@@ -177,8 +180,7 @@
     window.open(buildShareLink(), '_blank', 'noopener');
   });
 
-  // ملاحظة: لاستبدال صندوق الإعلان بكود AdSense لاحقًا:
-  // ضع كود السكربت الخاص بإعلانك داخل div#ad-space.
+  // لاستبدال ad-box بكود إعلانك لاحقًا: ضع كودك داخل div#ad-space
 })();
 </script>
 </body>
