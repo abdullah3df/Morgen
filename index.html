@@ -4,85 +4,123 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>صباح الخير — دعاء اليوم</title>
-<meta name="description" content="صباح الخير مع دعاء صباحي يوميًا. اكتب اسم من تحب وشارك الدعاء على واتساب.">
+<meta name="description" content="صباح الخير مع دعاء صباحي يوميًا. اكتب اسم من تحب وشارك الدعاء على واتساب أو تويتر.">
 <meta name="theme-color" content="#e9fff4"/>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg1:#e9fff4; --bg2:#fef7ec; --bg3:#eaf4ff;
     --ink:#0e2a24; --muted:#5b7a73;
     --brand:#1ac28a; --brand2:#0ea56a;
-    --card:#ffffffcc; --edge:#e0f1ea;
+    --edge:#e0f1ea; --card:#ffffffcc;
     --accent:#ffcf6f;
   }
   *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
   html,body{height:100%}
   body{
-    margin:0;display:grid;place-items:center;
-    background:
-      radial-gradient(800px 400px at 10% -10%, var(--bg3) 0, transparent 60%),
-      radial-gradient(900px 450px at 110% -10%, #fff1d9 0, transparent 55%),
-      linear-gradient(180deg, var(--bg1), var(--bg2));
-    font-family:"Tajawal", system-ui, -apple-system, "Segoe UI", Arial;
-    color:var(--ink);
+    margin:0;display:grid;place-items:center;font-family:"Tajawal",system-ui,-apple-system,"Segoe UI",Arial;color:var(--ink);
+    transition:background 0.6s ease;
   }
+  /* 7 خلفيات تتبدّل حسب اليوم (0..6) */
+  .bg0{background:
+    radial-gradient(800px 400px at 10% -10%, #eaf4ff 0, transparent 60%),
+    radial-gradient(900px 450px at 110% -10%, #fff1d9 0, transparent 55%),
+    linear-gradient(180deg, #e9fff4, #fef7ec);}
+  .bg1{background:
+    radial-gradient(750px 420px at 5% -10%, #ffe8eb 0, transparent 60%),
+    radial-gradient(900px 460px at 120% -10%, #e9fff4 0, transparent 55%),
+    linear-gradient(180deg, #fffaf4, #eefdf6);}
+  .bg2{background:
+    radial-gradient(780px 420px at 0% -10%, #e9fff4 0, transparent 60%),
+    radial-gradient(880px 450px at 120% -10%, #eaf4ff 0, transparent 55%),
+    linear-gradient(180deg, #f4fffb, #f7fbff);}
+  .bg3{background:
+    radial-gradient(820px 420px at 15% -10%, #fff2d9 0, transparent 60%),
+    radial-gradient(900px 470px at 110% -10%, #f0fff5 0, transparent 55%),
+    linear-gradient(180deg, #fffaf2, #edfff7);}
+  .bg4{background:
+    radial-gradient(820px 420px at 10% -10%, #f0fff5 0, transparent 60%),
+    radial-gradient(900px 470px at 110% -10%, #fff2d9 0, transparent 55%),
+    linear-gradient(180deg, #f2fffb, #fff8ef);}
+  .bg5{background:
+    radial-gradient(820px 420px at 8% -10%, #edf5ff 0, transparent 60%),
+    radial-gradient(900px 470px at 112% -10%, #eafff4 0, transparent 55%),
+    linear-gradient(180deg, #f5fbff, #f2fff9);}
+  .bg6{background:
+    radial-gradient(820px 420px at 12% -10%, #fff0f4 0, transparent 60%),
+    radial-gradient(900px 470px at 108% -10%, #eefcff 0, transparent 55%),
+    linear-gradient(180deg, #fff7fb, #f3fbff);}
+
   .wrap{width:min(96vw,880px);padding:22px}
   .card{
-    background:var(--card);
-    backdrop-filter:saturate(1.2) blur(8px);
-    border:1px solid var(--edge);
-    border-radius:28px;
-    padding:28px;
+    background:var(--card); backdrop-filter:saturate(1.2) blur(8px);
+    border:1px solid var(--edge); border-radius:28px; padding:28px;
     box-shadow:0 20px 50px rgba(14,42,36,.08);
+    animation:card-in .6s ease both;
   }
+  @keyframes card-in{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
 
   .hero{display:grid;grid-template-columns:72px 1fr;gap:14px;align-items:center;margin-bottom:10px}
   .sun{
     width:72px;height:72px;border-radius:20px;display:grid;place-items:center;
     background:conic-gradient(from 0deg, #fff2cc, #ffd589, #ffc26a, #ffd589, #fff2cc);
     box-shadow:0 10px 24px rgba(255,193,104,.28), inset 0 1px 0 rgba(255,255,255,.5);
+    animation:pop .7s ease .1s both;
   }
   .sun svg{width:40px;height:40px;fill:#8a4d1a;opacity:.9}
   h1{margin:0;font-size:clamp(1.4rem,3.6vw,2rem);font-weight:900}
   .sub{margin:2px 0 0;color:var(--muted);font-size:clamp(.95rem,2.6vw,1.05rem)}
+  @keyframes pop{0%{transform:scale(.9);opacity:.6}100%{transform:scale(1);opacity:1}}
 
   .panel{margin-top:14px;padding:18px;border:1px dashed var(--edge);border-radius:18px;background:#ffffffa6}
-  .greet{font-weight:900;font-size:clamp(1.1rem,3.2vw,1.4rem)}
+  .greet{font-weight:900;font-size:clamp(1.1rem,3.2vw,1.35rem);opacity:.85}
   .bigName{
-    margin:4px 0 2px;font-size:clamp(1.6rem,6.2vw,3rem);
-    font-weight:900;letter-spacing:.3px;
+    margin:4px 0 2px;font-size:clamp(1.7rem,6.2vw,3.2rem);font-weight:900;letter-spacing:.3px;
     background:linear-gradient(90deg,#0ea56a,#12c18b);
     -webkit-background-clip:text;background-clip:text;color:transparent;
+    animation:name-in .5s ease both;
   }
-  .dua{
-    font-size:clamp(1rem,3vw,1.18rem);
-    line-height:1.9;color:#0f372f;
-    background:linear-gradient(180deg,#ffffffc8,#ffffffa0);
-    border:1px solid var(--edge);padding:14px;border-radius:16px;margin-top:8px
-  }
+  @keyframes name-in{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+  .name-glow{animation:glow 1s ease}
+  @keyframes glow{0%{text-shadow:0 0 0 rgba(18,193,139,.0)}50%{text-shadow:0 0 18px rgba(18,193,139,.35)}100%{text-shadow:0 0 0 rgba(18,193,139,.0)}}
 
-  .actions{display:grid;grid-template-columns:1fr auto;gap:10px;margin-top:14px}
+  .dua{
+    font-size:clamp(1rem,3vw,1.18rem); line-height:1.9; color:#0f372f;
+    background:linear-gradient(180deg,#ffffffc8,#ffffffa0);
+    border:1px solid var(--edge); padding:14px; border-radius:16px; margin-top:8px;
+    animation:dua-in .55s ease .05s both;
+  }
+  @keyframes dua-in{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+  .actions{display:grid;grid-template-columns:1fr auto auto;gap:10px;margin-top:14px}
   input[type="text"]{
     padding:12px 14px;border-radius:14px;border:1px solid var(--edge);
-    background:#fff;color:#143d34;outline:none
+    background:#fff;color:#143d34;outline:none;transition:box-shadow .2s ease, border-color .2s ease;
   }
+  input[type="text"]:focus{box-shadow:0 0 0 3px rgba(26,194,138,.25);border-color:#bdebdc}
   .btn{
-    padding:12px 18px;border:none;border-radius:14px;cursor:pointer;
+    padding:12px 16px;border:none;border-radius:14px;cursor:pointer;
     font-weight:900;color:#fff;background:linear-gradient(145deg,var(--brand),var(--brand2));
     box-shadow:0 16px 32px rgba(26,194,138,.22), inset 0 1px 0 rgba(255,255,255,.22);
     transition:transform .15s ease, filter .2s ease;
   }
   .btn:hover{filter:brightness(1.03)} .btn:active{transform:translateY(1px)}
+  .btn.secondary{background:linear-gradient(145deg,#5865f2,#4752c4)} /* تويتر/نسخ شكل مختلف لاحقًا */
 
-  /* إعلان أسفل الصفحة (مُصغّر) */
-  .ad-wrap{margin-top:16px;display:grid;place-items:center}
+  .share-row{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+  .copyNotice{color:#2f6e5b;font-size:.95rem;display:none}
+  .copyNotice.show{display:block;animation:fade .6s ease both}
+  @keyframes fade{from{opacity:0}to{opacity:1}}
+
+  /* عداد + إعلان */
+  .meta-row{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:14px;flex-wrap:wrap}
+  .visits{color:var(--muted);font-size:.95rem}
+
+  .ad-wrap{display:grid;place-items:center; margin-top:8px}
   .ad-box{
     width:200px;height:100px;background:#ffffffb8;border:1px dashed #a6d9c9;border-radius:14px;
     display:grid;place-items:center;color:#2b6b59;font-weight:800;font-size:0.95rem
   }
   .ad-email{font-size:0.9rem;color:#555;margin-top:6px;text-align:center}
-
-  .footer{margin-top:10px;color:var(--muted);font-size:.95rem;text-align:center}
 </style>
 </head>
 <body>
@@ -105,8 +143,17 @@
 
         <div class="actions">
           <input id="nameInput" type="text" placeholder="اكتب الاسم (مثال: أحمد)"/>
-          <button id="shareBtn" class="btn">📤 مشاركة الدعاء</button>
+          <div class="share-row">
+            <button id="shareWA" class="btn">واتساب</button>
+            <button id="shareTW" class="btn secondary" title="تغريدة">تويتر</button>
+            <button id="copyBtn" class="btn secondary" title="نسخ النص">نسخ</button>
+          </div>
         </div>
+        <div id="copyNote" class="copyNotice">✔ تم النسخ إلى الحافظة</div>
+      </div>
+
+      <div class="meta-row">
+        <div class="visits">زوار الصفحة: <b id="visitors">—</b></div>
       </div>
 
       <!-- إعلان أسفل الصفحة (مُصغّر) -->
@@ -114,8 +161,6 @@
         <div class="ad-box" id="ad-space">مساحة إعلانية</div>
         <div class="ad-email">abd30.3000@gmail.com</div>
       </div>
-
-      <div class="footer">اكتب الاسم ثم اضغط مشاركة — يمكن أيضًا تمرير الاسم بالرابط (?to=أحمد)</div>
     </section>
   </main>
 
@@ -123,7 +168,11 @@
 (() => {
   "use strict";
 
-  // أدعية صباحية (٧) تتبدّل يوميًا
+  /* ===== الخلفية حسب اليوم ===== */
+  const day = new Date().getDay(); // 0..6
+  document.body.classList.add("bg"+day);
+
+  /* ===== بيانات الصفحة ===== */
   const DUAS = [
     "اللهم بك أصبحنا وبك أمسينا وبك نحيا وبك نموت وإليك النشور.",
     "أصبحنا وأصبح الملك لله، والحمد لله، لا إله إلا الله وحده لا شريك له.",
@@ -133,54 +182,99 @@
     "حسبي الله لا إله إلا هو عليه توكلت وهو رب العرش العظيم.",
     "اللهم صلّ وسلم على نبينا محمد، وبارك لنا في صباحنا."
   ];
+  const SITE_URL = "https://abdullah3df.github.io/Morgen/"; // غيّره لو تغيّر الرابط لاحقًا
 
-  // غيّر هذا للرابط النهائي لصفحتك إذا اختلف لاحقًا
-  const SITE_URL = "https://abdullah3df.github.io/Morgen/";
-
-  // عناصر
   const todayEl   = document.getElementById('today');
   const bigNameEl = document.getElementById('bigName');
   const duaEl     = document.getElementById('dua');
   const input     = document.getElementById('nameInput');
-  const shareBtn  = document.getElementById('shareBtn');
+  const shareWA   = document.getElementById('shareWA');
+  const shareTW   = document.getElementById('shareTW');
+  const copyBtn   = document.getElementById('copyBtn');
+  const copyNote  = document.getElementById('copyNote');
+  const visitorsEl = document.getElementById('visitors');
 
-  // اليوم والتاريخ بالعربية
+  /* اليوم والتاريخ بالعربية */
   const now = new Date();
   const weekday = new Intl.DateTimeFormat('ar-EG', { weekday:'long' }).format(now);
   const fullDate = new Intl.DateTimeFormat('ar-EG', { day:'numeric', month:'long', year:'numeric' }).format(now);
   todayEl.textContent = `${weekday} — ${fullDate}`;
 
-  // دعاء اليوم حسب اليوم (0..6)
-  const dua = DUAS[now.getDay() % DUAS.length];
+  /* دعاء اليوم */
+  const dua = DUAS[day % DUAS.length];
   duaEl.textContent = `“${dua}”`;
 
-  // اسم بالرابط ?to=
+  /* اسم من الرابط ?to= */
   const params = new URLSearchParams(location.search);
   const fromUrl = decodeURIComponent(params.get('to')||'').trim();
   if(fromUrl){ bigNameEl.textContent = fromUrl; input.value = fromUrl; }
 
-  // تحديث الاسم مباشرة
+  /* تفاعل عند إدخال الاسم */
   input.addEventListener('input', () => {
-    bigNameEl.textContent = input.value.trim() || 'صديقي';
+    const txt = input.value.trim();
+    bigNameEl.textContent = txt || 'صديقي';
+    bigNameEl.classList.remove('name-glow'); void bigNameEl.offsetWidth; bigNameEl.classList.add('name-glow');
   });
 
-  // مشاركة واتساب: اسم + اليوم + التاريخ + دعاء + رابط الصفحة مع الاسم
-  function buildShareLink(){
-    const name = (input.value.trim() || bigNameEl.textContent || 'صديقي');
-    const urlWithName = SITE_URL + "?to=" + encodeURIComponent(name);
-    const msg =
-      `صباح الخير يا ${name} 🌅\n` +
-      `${weekday}، ${fullDate}\n` +
-      `دعاء الصباح:\n${dua}\n` +
-      urlWithName;
-    return 'https://wa.me/?text=' + encodeURIComponent(msg);
+  function currentName(){
+    return (input.value.trim() || bigNameEl.textContent || 'صديقي');
   }
 
-  shareBtn.addEventListener('click', () => {
-    window.open(buildShareLink(), '_blank', 'noopener');
+  /* بناء النص والرابط */
+  function urlWithName(name){
+    return SITE_URL + "?to=" + encodeURIComponent(name);
+  }
+  function message(name){
+    return `صباح الخير يا ${name} 🌅\n${weekday}، ${fullDate}\nدعاء الصباح:\n${dua}\n` + urlWithName(name);
+  }
+
+  /* مشاركة واتساب */
+  shareWA.addEventListener('click', ()=>{
+    const name = currentName();
+    const link = "https://wa.me/?text=" + encodeURIComponent(message(name));
+    window.open(link, "_blank", "noopener");
   });
 
-  // لاستبدال ad-box بكود إعلانك لاحقًا: ضع كودك داخل div#ad-space
+  /* مشاركة تويتر */
+  shareTW.addEventListener('click', ()=>{
+    const name = currentName();
+    const text = `صباح الخير يا ${name} 🌅\n${weekday}، ${fullDate}\nدعاء الصباح:\n${dua}`;
+    const url  = urlWithName(name);
+    const link = "https://twitter.com/intent/tweet?text="+encodeURIComponent(text)+"&url="+encodeURIComponent(url);
+    window.open(link, "_blank", "noopener");
+  });
+
+  /* نسخ النص */
+  copyBtn.addEventListener('click', async ()=>{
+    const name = currentName();
+    const txt = message(name);
+    try{
+      await navigator.clipboard.writeText(txt);
+      copyNote.classList.add('show');
+      setTimeout(()=>copyNote.classList.remove('show'), 1500);
+    }catch{
+      // احتياطي بسيط
+      const ta = document.createElement('textarea'); ta.value = txt; document.body.appendChild(ta);
+      ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
+      copyNote.classList.add('show');
+      setTimeout(()=>copyNote.classList.remove('show'), 1500);
+    }
+  });
+
+  /* عدّاد الزوّار */
+  (async function updateVisitors(){
+    try{
+      const ns="gm-morning-v2"; const key="visitors";
+      const r = await fetch(`https://api.countapi.xyz/hit/${ns}/${key}`, {cache:"no-store"});
+      const d = await r.json();
+      visitorsEl.textContent = (typeof d.value==='number') ? d.value.toLocaleString('ar-EG') : "—";
+    }catch(e){
+      const k="local-v"; const v=(parseInt(localStorage.getItem(k)||"0",10)+1);
+      localStorage.setItem(k,String(v));
+      visitorsEl.textContent = v.toLocaleString('ar-EG');
+    }
+  })();
+
 })();
 </script>
 </body>
